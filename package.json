@@ -1,0 +1,21 @@
+{
+  "name": "matplotlib-test-generation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^14.3.2",
+    "pixelmatch": "^7.1.0",
+    "playwright": "^1.52.0",
+    "pngjs": "^7.0.0",
+    "puppeteer": "^24.8.0",
+    "selenium-webdriver": "^4.32.0",
+    "testcafe": "^3.7.2"
+  }
+}
