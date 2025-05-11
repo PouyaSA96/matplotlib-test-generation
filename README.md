@@ -7,17 +7,12 @@ A comprehensive test framework for generating, organizing, and running over 2,50
 ## Table of Contents
 
 1. [Features](#features)
-2. [Project Structure](#project-structure)
-3. [Prerequisites](#prerequisites)
-4. [Installation](#installation)
-5. [Usage](#usage)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Usage](#usage)
    - [Run Python Tests](#run-python-tests)
    - [Run JS Gallery Tests](#run-js-gallery-tests)
-6. [Configuration](#configuration)
-7. [Extending & Contributing](#extending--contributing)
-8. [Reporting Bugs](#reporting-bugs)
-9. [License](#license)
-
+5. [Configuration](#configuration)
 ---
 
 ## Features
