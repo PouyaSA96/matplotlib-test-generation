@@ -1,4 +1,4 @@
-# Matplotlib Automated Test Generation Suite
+# Matplotlib Automated Test Generation Suite [Group 17] AdminTests (CSCI926/ S125)
 
 A comprehensive test framework for generating, organizing, and running over 2,500 automated test cases against the Matplotlib library. Combines hand-crafted Python unit tests (with pytest & Hypothesis) and JavaScript gallery validations (with Puppeteer).
 
