@@ -1,5 +1,3 @@
-# code/python/test_property_plots.py
-
 import matplotlib
 matplotlib.use('Agg')
 
@@ -9,7 +7,6 @@ import pytest
 from io import BytesIO
 from hypothesis import given, settings, strategies as st
 
-# --- Plot types and valid style parameters ---
 PLOT_TYPES       = ["line", "scatter", "bar", "hist", "pie"]
 VALID_COLORS     = ["blue", "#00FF00", "C2"]
 VALID_ALPHAS     = [0.3, 0.7, 1.0]
@@ -20,18 +17,14 @@ VALID_WIDTHS     = [0.2, 0.5, 1.0]
 
 @st.composite
 def plot_cases(draw):
-    # 1) choose a plot type
     ptype = draw(st.sampled_from(PLOT_TYPES))
-    # 2) generate finite float data of length 2–50
     data = draw(st.lists(
         st.floats(min_value=-1e3, max_value=1e3, allow_nan=False, allow_infinity=False),
         min_size=2, max_size=50
     ))
     arr = np.array(data, dtype=float)
 
-    # 3) build kwargs appropriate for that plot type
     if ptype == "pie":
-        # pie needs a list of colors and labels matching data length
         colors = draw(st.lists(st.sampled_from(VALID_COLORS), min_size=len(arr), max_size=len(arr)))
         labels = [str(i) for i in range(len(arr))]
         opts = {

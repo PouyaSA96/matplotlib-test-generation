@@ -6,7 +6,6 @@ import pytest
 import matplotlib.pyplot as plt
 import random
 
-# --- parameter domains ---
 plot_types = ['line','scatter','bar','hist','pie']
 sizes     = [2, 10, 100, 1000]
 colors    = ['blue','C1','#00FF00']
@@ -17,7 +16,6 @@ bar_widths= [0.2, 0.5, 1.0]
 hist_bins = [5, 10, 20]
 pie_ns    = [3, 5, 7]
 
-# Build all valid (ptype, n, opts) combos
 cases = []
 for ptype in plot_types:
     domain = pie_ns if ptype == 'pie' else sizes
@@ -41,11 +39,9 @@ for ptype in plot_types:
                                                labels=[str(i) for i in range(n)],
                                                autopct='%1.1f%%')))
 
-# Sample exactly 300 cases
 random.seed(42)
 cases = random.sample(cases, 300)
 
-# Pre-generate an ID for each case
 ids = [f"{ptype}_{n}_{list(opts.keys())[0]}" for ptype, n, opts in cases]
 
 @pytest.mark.parametrize("ptype,n,opts", cases, ids=ids)
