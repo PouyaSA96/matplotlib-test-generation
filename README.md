@@ -39,7 +39,7 @@ A comprehensive test framework for generating, organizing, and running over 2,50
 1. **Clone the repository**
    ```bash
    git clone https://github.com/your-org/matplotlib-test-suite.git
-   cd matplotlib-test-suite
+   cd matplotlib-test-generation
    ```
 
 2. **Install Python dependencies**
