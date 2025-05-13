@@ -50,8 +50,9 @@ A comprehensive test framework for generating, organizing, and running over 2,50
 3. **Install JS dependencies**
    ```bash
    cd code/js
-   npm install puppeteer
+   npm install puppeteer mocha
    cd ..
+   npx mocha code/js/puppeteer-test.js 
    ```
 
 ---

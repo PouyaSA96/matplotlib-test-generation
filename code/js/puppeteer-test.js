@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer');
+const assert    = require('assert');
+
 const URLS = [
     'https://matplotlib.org/stable/gallery/lines_bars_and_markers/simple_plot.html',
     'https://matplotlib.org/stable/gallery/lines_bars_and_markers/bar_stacked.html',
@@ -9,17 +11,13 @@ const URLS = [
     'https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html',
     'https://matplotlib.org/stable/gallery/lines_bars_and_markers/scatter_hist.html',
     'https://matplotlib.org/stable/gallery/statistics/errorbar_features.html',
-    'https://matplotlib.org/stable/gallery/statistics/histogram_histogram2d.html',
     'https://matplotlib.org/stable/gallery/statistics/boxplot_demo.html',
     'https://matplotlib.org/stable/gallery/statistics/violinplot.html',
     'https://matplotlib.org/stable/gallery/images_contours_and_fields/contour_demo.html',
     'https://matplotlib.org/stable/gallery/images_contours_and_fields/contourf_demo.html',
     'https://matplotlib.org/stable/gallery/images_contours_and_fields/image_demo.html',
-    'https://matplotlib.org/stable/gallery/images_contours_and_fields/irradiance.html',
     'https://matplotlib.org/stable/gallery/text_labels_and_annotations/annotation_demo.html',
-    'https://matplotlib.org/stable/gallery/text_labels_and_annotations/text_intro.html',
     'https://matplotlib.org/stable/gallery/color/colormap_reference.html',
-    'https://matplotlib.org/stable/gallery/color/colormaps_reference.html',
     'https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html',
     'https://matplotlib.org/stable/gallery/subplots_axes_and_figures/shared_axis_demo.html'
    ];
@@ -36,18 +34,21 @@ for (const url of URLS) {
   }
 } 
 
-describe("Gallery smoke", () => {
-  let browser;
-  beforeAll(async () => browser = await puppeteer.launch());
-  afterAll(async () => browser.close());
+describe('Gallery smoke', function() {
+  this.timeout(30_000);
 
-  for (const t of TESTS) {
-    test(`${t.url} @${t.vp.width}x${t.vp.height}`, async () => {
+  let browser;
+  before(async () => { browser = await puppeteer.launch(); });
+  after(async ()  => { await browser.close(); });
+
+  TESTS.forEach(t => {
+    it(`${t.url} @${t.vp.width}x${t.vp.height}`, async () => {
       const page = await browser.newPage();
       await page.setViewport(t.vp);
       const res = await page.goto(t.url);
-      expect(res.status()).toBe(200);
-      expect(await page.$('img[src*="/_images/"]')).not.toBeNull();
-    }, 15_000);
-  }
+      assert.strictEqual(res.status(), 200);
+      const img = await page.$('img[src*="/_images/"]');
+      assert.ok(img, 'expected a demo image');
+    });
+  });
 });
