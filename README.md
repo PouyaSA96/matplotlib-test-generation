@@ -49,10 +49,7 @@ A comprehensive test framework for generating, organizing, and running over 2,50
 
 3. **Install JS dependencies**
    ```bash
-   cd code/js
    npm install puppeteer mocha
-   cd ..
-   npx mocha code/js/puppeteer-test.js 
    ```
 
 ---
@@ -72,7 +69,7 @@ pytest python/tests -q --maxfail=1 --disable-warnings
 ### Run JS Gallery Tests
 
 ```bash
-node js/puppeteer-test.js
+npx mocha code/js/puppeteer-test.js 
 ```
 
 - Validates gallery pages in headless Chromium.
