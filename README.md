@@ -49,7 +49,7 @@ A comprehensive test framework for generating, organizing, and running over 2,50
 
 3. **Install JS dependencies**
    ```bash
-   cd js
+   cd code/js
    npm install puppeteer
    cd ..
    ```
